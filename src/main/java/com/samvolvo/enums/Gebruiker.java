@@ -1,7 +1,7 @@
 package com.samvolvo.enums;
 
 public enum Gebruiker {
-    SAM(32, 413),
+    SAM(32, 000),
     EMANUELE(05, 000),
     WARRE(17, 000),
     BO(30, 000),
