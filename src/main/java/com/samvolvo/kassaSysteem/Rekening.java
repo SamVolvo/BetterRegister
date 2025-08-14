@@ -1,6 +1,5 @@
 package com.samvolvo.kassaSysteem;
 
-import com.samvolvo.Register;
 import com.samvolvo.enums.Item;
 import com.samvolvo.tools.Colors;
 
@@ -9,15 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Rekening {
-    private Register main;
     private List<Integer> rekening = new ArrayList<>();
     private double totaal = 0.0;
 
-    public Rekening(Register main){
-        this.main = main;
+    public Rekening(){
     }
 
-    public void addProduct(String input){
+    public Item addProduct(String input){
         try{
             int plu = Integer.parseInt(input);
             Item item = Item.getItemByPlu(plu);
@@ -25,19 +22,21 @@ public class Rekening {
                 totaal += item.getPrice();
                 rekening.add(plu);
                 System.out.println(Colors.GROEN + item.name().toLowerCase() + " - " + item.getPrice() + Colors.RESET);
+                return item;
             }else{
                 System.out.println(Colors.ROOD + "Onbekende PLU nummer" + Colors.RESET);
             }
         }catch (NumberFormatException e){
             System.out.println(Colors.ROOD + "Onbekende PLU nummer" + Colors.RESET);
         }
+        return null;
     }
 
-    public void removeProduct(){
+    public void removeProduct(Scanner scanner){
         System.out.print("Welk product wilt u verwijderen: ");
-        int plu = main.getScanner().nextInt();
+        int plu = scanner.nextInt();
         Item item = Item.getItemByPlu(plu);
-        main.getScanner().nextLine();
+        scanner.nextLine();
         if (item == null){
             System.out.println(Colors.ROOD + "Onbekende PLU nummer" + Colors.RESET);
             return;
@@ -52,5 +51,9 @@ public class Rekening {
             System.out.println(Colors.ROOD + "- " + item.name().toLowerCase() + " - $" + item.getPrice() + Colors.RESET);
             return;
         }
+    }
+
+    public double getTotaal() {
+        return totaal;
     }
 }
