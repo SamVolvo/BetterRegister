@@ -23,14 +23,14 @@ public class LoggedIn {
         Scanner scanner = main.getScanner();
         consoleUtil.clearConsole();
         boolean loggedIn = true;
-        Rekening rekening = new Rekening(main);
+        Rekening rekening = new Rekening();
         System.out.println("Welkom " + gebruiker.name().toLowerCase() + ".");
         while (loggedIn){
             System.out.print("Voer PLU code in: ");
             String input = scanner.nextLine();
 
             if (input.equalsIgnoreCase("verwijder")){
-                rekening.removeProduct();
+                rekening.removeProduct(scanner);
                 break;
             }
 

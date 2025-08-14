@@ -1,5 +1,6 @@
 package com.samvolvo;
 
+import com.samvolvo.guiMode.GuiMode;
 import com.samvolvo.terminalMode.Login;
 import com.samvolvo.tools.ConsoleUtil;
 import com.samvolvo.tools.Logging;
@@ -33,9 +34,12 @@ public class Register {
                 consoleUtil.wait(10000);
                 new Login(this);
             } else if (option == 2) {
-                System.out.println("Not supported yet!");
-                consoleUtil.wait(2000);
                 consoleUtil.clearConsole();
+                System.out.println("Loading GUI Mode.");
+                consoleUtil.wait(1000);
+                scanner.close();
+                new GuiMode();
+                break;
             }else{
                 System.out.println("Invalid option Try again!");
                 consoleUtil.wait(2000);
